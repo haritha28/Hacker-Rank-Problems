@@ -1,32 +1,24 @@
-#include <cmath>
-#include <cstdio>
-#include <vector>
-#include <iostream>
-#include <algorithm>
+#include <bits/stdc++.h>
 using namespace std;
 
-char newstring(char A[100], int n, int i){
-    char B[100];
-    for(int j = i+1; i<n; j++){
-        char B[i] = char A[j+1];
+int main(){
+    string s, t;
+    cin>>s;
+    while(1){
+        bool ok =false;
+        for(int i = 0; i < s.length(); i++){
+            if(i != s.length() - 1 and s[i] == s[i + 1] and ok == false){
+                ok = true, i++;
+            }
+            else t = t + s[i];
+        }
+        s = t;
+        t.clear();
+        if(!ok) break;
     }
-    return B;
+    if(!s.size())   cout<<"Empty String"<<endl;
+    else cout<<s<<endl;
 }
 
-int main() {
-    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
-    int n;
-    cin>>n;
-    char a[100];
-    for(int i =0 ; i<n; i++){
-        cin>>char[i];
-    }
-    for(int i =0; i<n; i++){
-        if(a[i]==a[i+1]){
-            a = newstring(a,n,i);
-            n = n - 2; 
-        }
-    }
-    cout<<a<<endl;
-    return 0;
-}
+//If bool value of ok not set for the first test case say "aaabccddd" no issues
+//If for test case 2 baab we need ok value to re-check if the new string "bb" can be emptied.
